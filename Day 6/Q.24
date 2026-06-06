@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+int main() {
+    double x, result = 1.0;
+    int n, abs_n;
+
+    printf("Enter base (x): ");
+    scanf("%lf", &x);
+    printf("Enter integer exponent (n): ");
+    scanf("%d", &n);
+
+    if (n < 0) {
+        abs_n = -n;
+    } else {
+        abs_n = n;
+    }
+    for (int i = 0; i < abs_n; i++) {
+        result *= x;
+    }
+
+    if (n < 0) {
+        if (result == 0) {
+            printf("Error: Division by zero (0 raised to a negative power is undefined).\n");
+            return 1;
+        }
+        result = 1.0 / result;
+    }
+
+    printf("%.2lf raised to the power %d is: %.5lf\n", x, n, result);
+
+    return 0;
+}
