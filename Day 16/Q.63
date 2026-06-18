@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int compare(const void *a, const void *b) {
+    return (*(int*)a - *(int*)b);
+}
+
+void findPairTwoPointer(int arr[], int size, int target) {
+
+    qsort(arr, size, sizeof(int), compare);
+
+    int low = 0;
+    int high = size - 1;
+    int found = 0;
+    while (low < high) {
+        int currentSum = arr[low] + arr[high];
+
+        if (currentSum == target) {
+            printf("Pair found: (%d, %d)\n", arr[low], arr[high]);
+            found = 1;
+            low++;  
+            high--;
+        } 
+        else if (currentSum < target) {
+            low++;   
+        } 
+        else {
+            high--;  
+        }
+    }
+
+    if (!found) {
+        printf("No pair found with the given sum.\n");
+    }
+}
+
+int main() {
+    int arr[] = {8, 7, 2, 5, 3, 1};
+    int target = 10;
+    int size = sizeof(arr) / sizeof(arr[0]);
+
+    printf("Target sum: %d\n", target);
+    findPairTwoPointer(arr, size, target);
+
+    return 0;
+}
