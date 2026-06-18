@@ -1,0 +1,39 @@
+#include <stdio.h>
+
+#define ROWS 3
+#define COLS 3
+
+int main() {
+    int matrix[ROWS][COLS];
+    int i, j, colSum;
+
+
+    printf("Enter elements for a %dx%d matrix:\n", ROWS, COLS);
+    for (i = 0; i < ROWS; i++) {
+        for (j = 0; j < COLS; j++) {
+            printf("Element [%d][%d]: ", i, j);
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+
+    
+    printf("\nThe Matrix is:\n");
+    for (i = 0; i < ROWS; i++) {
+        for (j = 0; j < COLS; j++) {
+            printf("%d\t", matrix[i][j]);
+        }
+        printf("\n");
+    }
+
+
+    printf("\n--- Column-Wise Sums ---\n");
+    for (j = 0; j < COLS; j++) {
+        colSum = 0; // Reset sum for the current column
+        for (i = 0; i < ROWS; i++) {
+            colSum += matrix[i][j]; // Accumulate row elements for column j
+        }
+        printf("Sum of Column %d = %d\n", j + 1, colSum);
+    }
+
+    return 0;
+}
